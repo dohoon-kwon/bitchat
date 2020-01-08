@@ -1,0 +1,63 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin-top: -150px;
+    margin-left: -100px;
+}
+
+
+.inputlist {
+font-family: dotum;
+font-size: 12px;
+font-weight: bold;
+color: #464646;
+}
+
+.inputlist .myidinfo {
+position: absolute;
+display: contents;
+}
+
+.inputlist .myidinfo li {
+padding: 10px 0 0 10px 0;
+}
+
+.inputlist .myidinfo .submit {
+    margin: 10px 0 0 0;
+    padding: 5px 100px 5px 100px;
+    text-align: center;
+    background: #829c2c;
+}
+
+.inputlist .myidinfo li a input {
+    color: #fff;
+    background: #829c2c;
+    cursor: pointer;
+}
+
+.inputlist .btm {
+    padding: 15px 0 0 50px;
+}
+
+.inputlist .btm li {
+padding: 0 0 11px 0;
+color: #383d41;
+font-size: 12px;
+font-family: dotum;
+}
+
+.inputlist .btm li a {
+    margin: 0 0 0 10px;
+    font-family: dotum;
+    font-size: 12px;
+    font-weight: bold;
+    color: #829c2c;
+    text-decoration: underline;
+}

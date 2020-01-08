@@ -1,23 +1,12 @@
 ﻿/* 메인 */
 #main {
     margin: auto;
+    margin-top: 100px;
     border-radius: 20px;
-    background-color: #fff;
-    border: 1px #000000;
+    background-color: #829c2c;
     text-align: center;
-    width: 90%;
-    height: 90%;
-}
-
-button {
-    background: #829c2c;
-    font-size: 20px;
-    font-family: Dotum;
-    font-weight: bold;
-    color: #fff;
-    height: 8%;
-    width: 100%;
-    text-align: center;
+    width: 500px;
+    height: 800px;
 }
 
 /* 채팅 영역 */
@@ -31,11 +20,9 @@ button {
 .connect {
     width: 90%;
     margin: auto;
-    background-color: #829c2c;
-    color: #fff;
+    background-color: aquamarine;
     text-align: center;
     margin-top: 10px;
-    font-size: 14px;
 }
 
 /* 접속 종료 알림 */
@@ -43,10 +30,8 @@ button {
     width: 90%;
     margin: auto;
     background-color: indianred;
-    color: #fff;
     text-align: center;
     margin-top: 10px;
-    font-size: 14px;
 }
 
 /* 내가 보낸 메시지 */
@@ -56,15 +41,13 @@ button {
     background-color: lemonchiffon;
     border-radius: 5px;
     margin-top: 10px;
-    font-size: 14px;
 }
 
 /* 상대방이 보낸 메시지 */
 .other {
     width: 90%;
     margin: auto;
-    background-color: lightblue;
+    background-color: white;
     border-radius: 5px;
     margin-top: 10px;
-    font-size: 14px;
 }

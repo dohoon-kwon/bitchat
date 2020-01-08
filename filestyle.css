@@ -1,0 +1,54 @@
+﻿@charset "utf-8";
+body {
+    position: absolute;
+}
+
+.uploadform .logo {
+    padding: 20px;
+}
+
+.uploadform .logo label{
+    font-family: Dotum;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.uploadform .upload {
+    padding: 10px 0 0 0;
+    position: relative;
+}
+
+.uploadform .upload li input[type="file"] {
+    background: #829c2c;
+    color: #fff;
+    font-family: Dotum;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+}
+
+.uploadform .upload li a input[type="submit"] {
+    background: #829c2c;
+    color: #fff;
+    font-family: Dotum;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.uploadform .upload li a input[type="submit"]:hover {
+    color: #000;
+    transition: 0.5s ease-in-out;
+}
+
+.uploadform .exit input {
+    background: #829c2c;
+    color: #fff;
+    font-family: Dotum;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}

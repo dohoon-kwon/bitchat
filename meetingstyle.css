@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	background: #829c2c;
+	font-family: dotum;
+	font-weight: bold;
+	font-size: 30px;
+	color: #fff;
+}
+
+video {
+	max-width: 100%;
+	width: 600px;
+	height: 500px;
+	border: 2px solid #000;
+	background: #000;
+}
+
+.mainbtn .closebtn{
+	color:#ffffff;
+	display: inline-block;
+}
