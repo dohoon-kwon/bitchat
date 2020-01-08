@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>searchid</title>
+
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="searchidstyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="sanaicon.ico" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        function resultpopup() {
+            var url = "/idresult"
+            var name = "idpopup";
+            var option = "width = 500, height = 500, top = 100"
+            window.open(url, name, option);
+        }
+
+        function submitAction() {
+            if ($("#nametxt").val() == '') {
+                alert("이름이 비어있습니다.");
+                return false;
+            }
+            else if ($("#birthtxt").val() == '') {
+                alert("생년월일이 비어있습니다.");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+</head>
+	
+	
+
+<body>
+	<form action="idresult" method="post" onsubmit="return submitAction();">
+		<div class="inputlist">
+			<ul class="myidinfo">
+				<li><label>이름</label><input type="text" name="name" id="nametxt"/></li>
+				<li><label>생년월일</label><input type="text" name="birth" id="birthtxt"/></li>
+				
+				<li class="submit"><a><input value="검색" type="submit"/></a></li>
+			</ul>
+		</div>
+		
+	</form>
+	
+	<script type="text/javascript">
+		function movepage(){
+			location.href = "javascript:resultpopup()"
+		}
+	</script>
+</body>
+</html>

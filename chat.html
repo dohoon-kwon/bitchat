@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>chat</title>
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="/css/chatstyle.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+
+    <script>
+        function press() {
+            if (event.keyCode == 13) {
+                send();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="main">
+        <div id="chat">
+        </div>
+        <div>
+            <input type="text" id="test" placeholder="input message.." onkeydown="press()">
+            <button onclick="send()" type="submit">전송</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="makestyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="sanaicon.ico" />
+</head>
+
+<body>
+    <div class="logo">
+        <ul class="logotxt">
+            <li><label>회의실생성</label></li>
+            <li><label>새로운 회의실을 만들어보세요!</label></li>
+        </ul>
+    </div>
+
+    <form action="roomsearch" method="post">
+        <div class="inputlist">
+            <ul class="account">
+                <li><label for="id">회의실이름</label><input type="text" name="name" /></li>
+                <li><label for="pw">비밀번호</label><input type="password" name="password" /></li>
+            </ul>
+
+            <ul class="btn">
+                <li class="submitbtn">
+                    <a><input value="생성" type="submit" /></a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="btnline">
+
+        </div>
+    </form>
+
+    <script type="text/javascript">
+		function movepage(){
+			location.href = "/roomsearch"
+		}
+    </script>
+</body>
+</html>

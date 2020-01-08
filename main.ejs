@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>메인사이트</title>
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="mainstyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="sanaicon.ico" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div id="mysidenav" class="sidenav">
+        <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+        <a value="page move" onClick="roompage()">회의실</a>
+    </div>
+
+    <span class="openmenu" onclick='roompage()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i> 회의실</span>
+    <span class="openmenu2" onclick='openNav2()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i>사용자목록</span>
+    <span class="openmenu2" onclick='logout()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i>로그아웃</span>
+    <script>
+        function logout() {
+            location.href = "/loginweb"
+        }
+        function openNav2() {
+            document.getElementById('mysidenav2').style.width = '250px';
+        }
+        function closeNav2() {
+            document.getElementById('mysidenav2').style.width = '0';
+        }
+        function roompage() {
+            location.href = "/roomsearch"
+        }
+        function meetingpage() {
+            location.href = "/meeting"
+        }
+        function filepage() {
+            location.href = "/filecontrol"
+        }
+        function filelistpage() {
+            location.href = "/list"
+        }
+        function draw() {
+            location.href = "/draw"
+        }
+        function chatpage() {
+            location.href = "javascript:chatpopup()"
+        }
+    </script>
+
+    <div id="wrap">
+        <p>일정관리</p>
+        <!-- header -->
+        <div id="header">
+            <p id="dateview">시간</p>
+            <p>일정 추가 :<br />[날짜] <input type="date" id="choicedate" /> [일정]<input type="text" id="todo" /><input class="memobtn" onclick="memoset()" type="button" value="저장"/></p>
+        </div>
+        <!-- //header -->
+        <!-- container -->
+        <div id="container">
+            <!-- snb -->
+            <div class="snb">
+                <p style="color:#829c2c;">어제일</p>
+                <p id="yes"></p>
+            </div>
+            <!-- //snb -->
+            <!-- content -->
+            <div id="content">
+                <p style="color:#829c2c;">오늘할일</p>
+				<p><%=do%></p>
+                    <p id="today"></p>
+            </div>
+            <!-- //content -->
+            <!-- aside -->
+            <div class="aside">
+                <p style="color:#829c2c;">내일할일</p>
+                <p id="tom"></p>
+            </div>
+            <!-- //aside -->
+            <div class="clear">
+            </div>
+        </div>
+        <!-- //container -->
+    </div>
+    <script type="text/javascript">
+        function timeset() {
+            var date = new Date();
+            var datetxt = document.getElementById("dateview");
+            var datetext = "[ 오늘의 날짜 ] ";
+            datetext += date.getFullYear() + "년";
+            datetext += (date.getMonth() + 1) + "월";
+            datetext += date.getDate() + "일 ";
+            datetext += date.getHours() + "시";
+            datetext += date.getMinutes() + "분";
+            datetext += date.getSeconds() + "초";
+            datetxt.innerText = datetext;
+
+            var timeout = setTimeout(function () { timeset() }, 1000);
+        }
+        function memoset() {
+            var date = $('#choicedate').val();
+            var todo = $('#todo').val();
+            var todaytodo = document.getElementById("today");
+            var yestodo = document.getElementById("yes");
+            var tomtodo = document.getElementById("tom");
+            var time = new Date();
+            var today = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
+            var yes = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + (time.getDate() - 1);
+            var tom = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + (time.getDate() + 1);
+            if (date == '') {
+                alert("날짜를 입력하세요.");
+            }
+            else if (todo == '') {
+                alert("일정을 입력하세요.")
+            }
+            else {
+                if (date == today) {
+                    todaytodo.innerHTML += todo + "<br/>";
+                    alert("일정이 저장되었습니다.");
+                }
+                else if (date == yes) {
+                    yestodo.innerHTML += todo + "<br/>";
+                    alert("일정이 저장되었습니다.");
+                }
+                else if (date == tom) {
+                    tomtodo.innerHTML += todo + "<br/>";
+                    alert("일정이 저장되었습니다.");
+                }
+                else {
+                    alert("일정이 저장되었습니다.");
+                }
+            }
+        }
+        window.onload = timeset();
+        /*
+        $("#choicedate").change(function () {
+            alert("날짜값 변경!");
+        })
+        $("#todo").change(function () {
+            alert("일정값 변경!");
+        })*/
+    </script>
+
+
+
+</body>
+</html>

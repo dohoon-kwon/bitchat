@@ -1,0 +1,587 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>화상회의</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="author" type="text/html" href="https://plus.google.com/+MuazKhan">
+    <link rel="stylesheet" href="defalut.css" />
+    <meta name="author" content="Muaz Khan">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="title" content="Video Conferencing" />
+    <meta name="description" content="Video Conferencing using WebRTC." />
+    <meta name="keywords" content="WebRTC, Video Conferencing, Demo, Example, Experiment" />
+
+    <link rel="stylesheet" href="articlestyle.css">
+    <link rel="shortcut icon" type="image/x-icon" href="sanaicon.ico" />
+
+    <!---->
+    <link rel="stylesheet" href="/css/chatstyle.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+
+    <script>
+        function press() {
+            if (event.keyCode == 13) {
+                send();
+            }
+        }
+        function filepopup() {
+            var url = "/list"
+            var name = "list";
+            var option = "width = 500, height = 500, top = 100"
+            window.open(url, name, option);
+        }
+        function drawpopup() {
+            var url = "/draw"
+            var name = "draw";
+            var option = "width = auto, height = auto, top = auto"
+            window.open(url, name, option);
+        }
+    </script>
+    <style>
+        .sidenav {
+            height: 100%;
+            width: 0;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #b7d944;
+            overflow-x: hidden;
+            float: right;
+            transition: 0.5s ease-in-out;
+            padding-top: 60px;
+        }
+
+            .sidenav a {
+                text-decoration: none;
+                font-size: 25px;
+                color: #fff;
+                display: block;
+                transition: 0.2s ease-in-out;
+                font-family: dotum;
+                font-weight: bold;
+            }
+
+                .sidenav a:hover, .offcanvas a:focus {
+                    color: #000;
+                }
+
+        .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px !important;
+            margin-left: 50px;
+        }
+
+        .openmenu:hover {
+            color: #000;
+            transition: 0.5s ease-in-out;
+        }
+
+        .openmenu {
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 10px 8px 8px;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+            font-family: dotum;
+            font-weight: bold;
+            background: #829c2c;
+        }
+
+            .openmenu > i {
+                font-size: 30px;
+            }
+
+        @media screen and (max-height:450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+                .sidenav a {
+                    font-size: 18px;
+                }
+        }
+
+        .filemenu:hover {
+            color: #000;
+            transition: 0.5s ease-in-out;
+        }
+
+        .filemenu {
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 10px 8px 8px;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+            font-family: dotum;
+            font-weight: bold;
+            background: #829c2c;
+        }
+
+            .filemenu > i {
+                font-size: 30px;
+            }
+
+        .drawmenu:hover {
+            color: #000;
+            transition: 0.5s ease-in-out;
+        }
+
+        .drawmenu {
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 10px 8px 8px;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+            font-family: dotum;
+            font-weight: bold;
+            background: #829c2c;
+        }
+
+            .drawmenu > i {
+                font-size: 30px;
+            }
+
+        .mainmenu:hover {
+            color: #000;
+            transition: 0.5s ease-in-out;
+        }
+
+        .mainmenu {
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 10px 8px 8px;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+            font-family: dotum;
+            font-weight: bold;
+            background: #829c2c;
+        }
+
+            .mainmenu > i {
+                font-size: 30px;
+            }
+
+        .setup:hover {
+            color: #000;
+            transition: 0.5s ease-in-out;
+        }
+
+        .setup {
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 10px 8px 8px;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+            font-family: dotum;
+            font-weight: bold;
+            background: #829c2c;
+        }
+
+            .setup > i {
+                font-size: 30px;
+            }
+
+
+        .off:hover {
+            color: #000;
+            transition: 0.5s ease-in-out;
+        }
+
+        .off {
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 10px 8px 8px;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+            font-family: dotum;
+            font-weight: bold;
+            background: #829c2c;
+        }
+
+            .off > i {
+                font-size: 30px;
+            }
+
+        .on:hover {
+            color: #000;
+            transition: 0.5s ease-in-out;
+        }
+
+        .on {
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 10px 8px 8px;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+            font-family: dotum;
+            font-weight: bold;
+            background: #829c2c;
+        }
+
+            .on > i {
+                font-size: 30px;
+            }
+    </style>
+    <!---->
+
+    <style>
+        audio, video {
+            -moz-transition: all 1s ease;
+            -ms-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            -webkit-transition: all 1s ease;
+            transition: all 1s ease;
+            vertical-align: top;
+        }
+
+        .experiment input {
+            border: 1px solid #d9d9d9;
+            border-radius: 1px;
+            font-size: 2em;
+            margin: .2em;
+            width: 30%;
+            text-align: center;
+        }
+
+        p {
+            padding: 1em;
+        }
+
+        li {
+            border-bottom: 1px solid rgb(189, 189, 189);
+            border-left: 1px solid rgb(189, 189, 189);
+            padding: .5em;
+        }
+
+        form {
+            padding: 10px 0 0 0;
+        }
+
+        a {
+            border: 1px solid #fff;
+            background: #829c2c;
+            color: #fff;
+            font-family: Dotum;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+            display: block;
+        }
+
+        header {
+            background: #829c2c;
+            color: #fff;
+            font-family: Dotum;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 8px 0;
+        }
+
+        .sidenav input {
+            width: 100%;
+            height: 30px;
+            font-size: 10px;
+            color: #373737;
+            border: 1px solid #e9e9e9;
+            background: #fff;
+            text-indent: 20px;
+            border-radius: 5px;
+            transition: all 0.5s;
+            vertical-align: middle;
+        }
+
+        .sidenav .sendui .sendbtn {
+            background: #829c2c;
+            font-size: 20px;
+            font-family: Dotum;
+            font-weight: bold;
+            color: #fff;
+            height: 90%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .sidenav .closebtn {
+            font-size: 12px;
+            font-family: Dotum;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+        }
+    </style>
+    <script>
+        document.createElement('article');
+        document.createElement('footer');
+    </script>
+    <script type="text/javascript">
+
+        function gotStream(stream) {
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            var audioContext = new AudioContext();
+
+            // Create an AudioNode from the stream
+            var mediaStreamSource = audioContext.createMediaStreamSource(stream);
+
+            // Connect it to destination to hear yourself
+            // or any other node for processing!
+            mediaStreamSource.connect(audioContext.destination);
+            var video = document.querySelector('video');
+            var videoTracks = stream.getVideoTracks();
+            window.stream = stream; // make variable available to browser console
+            video.srcObject = stream;
+        }
+        function onfail(error) {
+            console.log("permission not granted or system don't have media devices." + error.name);
+        }
+        navigator.getUserMedia({ audio: true, video: true }, gotStream, onfail);
+
+
+    </script>
+
+    <!-- script used to stylize video element -->
+    <script src="https://www.webrtc-experiment.com/getMediaElement.min.js"></script>
+
+    <script src="https://www.webrtc-experiment.com/socket.io.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://www.webrtc-experiment.com/IceServersHandler.js"></script>
+    <script src="https://www.webrtc-experiment.com/CodecsHandler.js"></script>
+    <script src="https://www.webrtc-experiment.com/RTCPeerConnection-v1.5.js"></script>
+    <script src="https://www.webrtc-experiment.com/video-conferencing/conference.js"></script>
+</head>
+
+<body>
+    <div id="mysidenav" class="sidenav">
+        <span class="closebtn" onclick='closeNav()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i>x</span>
+        <div id="main">
+            <div id="chat">
+            </div>
+            <div class="sendui">
+                <input type="text" id="test" placeholder="입력하세요" onkeydown="press()">
+                <button name="sendbtn" onclick="send()" type="submit">전송</button>
+            </div>
+        </div>
+    </div>
+    <span class="openmenu" onclick='openNav()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i> 채팅</span>
+    <span class="filemenu" onclick='openfilelist()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i> 파일</span>
+    <span class="drawmenu" onclick='openboard()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i> 그림보드</span>
+    <span class="setup" id="setup-new-room"><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i> 회의시작</span>
+    <span class="mainmenu" onclick='movepage()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i> 메인으로</span>
+    <script>
+        function openNav() {
+            document.getElementById('mysidenav').style.width = '250px';
+        }
+        function closeNav() {
+            document.getElementById('mysidenav').style.width = '0';
+        }
+        function openfilelist() {
+            location.href = "javascript:filepopup()"
+        }
+        function openboard() {
+            location.href = "javascript:drawpopup()"
+        }
+        function movepage() {
+            location.href = "/main"
+        }
+    </script>
+    <header>
+        <h1>
+            화상회의
+        </h1>
+    </header>
+
+    <section>
+        <input name="roomname" type="text" id="conference-name" value="회의실" style=" display: none;">
+    </section>
+
+    <article>
+        <table style="width: 100%;" id="rooms-list"></table>
+        <div id="videos-container"></div>
+    </article>
+    <script>
+        var config = {
+            openSocket: function (config) {
+                var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
+
+                config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+                var sender = Math.round(Math.random() * 999999999) + 999999999;
+
+                io.connect(SIGNALING_SERVER).emit('new-channel', {
+                    channel: config.channel,
+                    sender: sender
+                });
+
+                var socket = io.connect(SIGNALING_SERVER + config.channel);
+                socket.channel = config.channel;
+                socket.on('connect', function () {
+                    if (config.callback) config.callback(socket);
+                });
+
+                socket.send = function (message) {
+                    socket.emit('message', {
+                        sender: sender,
+                        data: message
+                    });
+                };
+
+                socket.on('message', config.onmessage);
+            },
+            onRemoteStream: function (media) {
+                var mediaElement = getMediaElement(media.video, {
+                    width: (videosContainer.clientWidth / 2) - 50,
+                    buttons: ['mute-audio', 'mute-video', 'full-screen', 'volume-slider']
+                });
+                mediaElement.id = media.stream.streamid;
+                videosContainer.appendChild(mediaElement);
+            },
+            onRemoteStreamEnded: function (stream, video) {
+                if (video.parentNode && video.parentNode.parentNode && video.parentNode.parentNode.parentNode) {
+                    video.parentNode.parentNode.parentNode.removeChild(video.parentNode.parentNode);
+                }
+            },
+            onRoomFound: function (room) {
+                var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
+                if (alreadyExist) return;
+
+                if (typeof roomsList === 'undefined') roomsList = document.body;
+
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td><strong>' + room.roomName + '</strong></td>' +
+                    '<td><button class="join">입장</button></td>';
+                roomsList.appendChild(tr);
+
+                var joinRoomButton = tr.querySelector('.join');
+                joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
+                joinRoomButton.setAttribute('data-roomToken', room.roomToken);
+                joinRoomButton.onclick = function () {
+                    this.disabled = true;
+
+                    var broadcaster = this.getAttribute('data-broadcaster');
+                    var roomToken = this.getAttribute('data-roomToken');
+                    captureUserMedia(function () {
+                        conferenceUI.joinRoom({
+                            roomToken: roomToken,
+                            joinUser: broadcaster
+                        });
+                    }, function () {
+                        joinRoomButton.disabled = false;
+                    });
+                };
+            },
+            onRoomClosed: function (room) {
+                var joinButton = document.querySelector('button[data-roomToken="' + room.roomToken + '"]');
+                if (joinButton) {
+                    joinButton.parentNode.parentNode.parentNode.parentNode.removeChild(joinButton.parentNode.parentNode.parentNode);
+                }
+            },
+            onReady: function () {
+                console.log('now you can open or join rooms');
+            }
+        };
+
+        function setupNewRoomButtonClickHandler() {
+            btnSetupNewRoom.disabled = true;
+            document.getElementById('conference-name').disabled = true;
+            captureUserMedia(function () {
+                conferenceUI.createRoom({
+                    roomName: (document.getElementById('conference-name') || {}).value || 'Anonymous'
+                });
+            }, function () {
+                btnSetupNewRoom.disabled = document.getElementById('conference-name').disabled = false;
+            });
+        }
+
+        function captureUserMedia(callback, failure_callback) {
+            var video = document.createElement('video');
+            video.muted = true;
+            video.volume = 0;
+
+            try {
+                video.setAttributeNode(document.createAttribute('autoplay'));
+                video.setAttributeNode(document.createAttribute('playsinline'));
+                video.setAttributeNode(document.createAttribute('controls'));
+            } catch (e) {
+                video.setAttribute('autoplay', true);
+                video.setAttribute('playsinline', true);
+                video.setAttribute('controls', true);
+            }
+
+            getUserMedia({
+                video: video,
+                onsuccess: function (stream) {
+                    config.attachStream = stream;
+
+                    var mediaElement = getMediaElement(video, {
+                        width: (videosContainer.clientWidth / 2) - 50,
+                        buttons: ['mute-audio', 'mute-video', 'full-screen', 'volume-slider']
+                    });
+                    mediaElement.toggle('mute-audio');
+                    videosContainer.appendChild(mediaElement);
+
+                    callback && callback();
+                },
+                onerror: function () {
+                    alert('unable to get access to your webcam');
+                    callback && callback();
+                }
+            });
+        }
+
+        var conferenceUI = conference(config);
+
+        /* UI specific */
+        var videosContainer = document.getElementById('videos-container') || document.body;
+        var btnSetupNewRoom = document.getElementById('setup-new-room');
+        var roomsList = document.getElementById('rooms-list');
+        if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
+
+        function rotateVideo(video) {
+            video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+            setTimeout(function () {
+                video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+            }, 1000);
+        }
+
+        function scaleVideos() {
+            var videos = document.querySelectorAll('video'),
+                length = videos.length, video;
+
+            var minus = 130;
+            var windowHeight = 700;
+            var windowWidth = 600;
+            var windowAspectRatio = windowWidth / windowHeight;
+            var videoAspectRatio = 4 / 3;
+            var blockAspectRatio;
+            var tempVideoWidth = 0;
+            var maxVideoWidth = 0;
+
+            for (var i = length; i > 0; i--) {
+                blockAspectRatio = i * videoAspectRatio / Math.ceil(length / i);
+                if (blockAspectRatio <= windowAspectRatio) {
+                    tempVideoWidth = videoAspectRatio * windowHeight / Math.ceil(length / i);
+                } else {
+                    tempVideoWidth = windowWidth / i;
+                }
+                if (tempVideoWidth > maxVideoWidth)
+                    maxVideoWidth = tempVideoWidth;
+            }
+            for (var i = 0; i < length; i++) {
+                video = videos[i];
+                if (video)
+                    video.width = maxVideoWidth - minus;
+            }
+        }
+        window.onresize = scaleVideos;
+
+    </script>
+    <script src="https://www.webrtc-experiment.com/commits.js" async></script>
+</body>
+</html>

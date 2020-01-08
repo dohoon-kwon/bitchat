@@ -1,0 +1,46 @@
+﻿
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>음성 인식</title>
+    <meta name="description" content="WebRTC에 대한 정보 공유">
+    <meta name="author" content="codeJS">
+    <meta name="viewport" content="width=1024, initial-scale=1.0">
+
+    <link href="/img/logo-webrtc.png" type="image/png" rel="icon">
+    <link href="/css/style.css" type="text/css" rel="stylesheet">
+    <link href="/css/github-gist.css" type="text/css" rel="stylesheet">
+    <script src="/js/lib/inherit.js"></script>
+    <script src="/js/lib/jquery.js"></script>
+    <script src="/js/lib/eventemitter.js"></script>
+    <script src="/js/lib/DetectRTC.js"></script>
+    <script src="/js/utils.js"></script>
+</head>
+
+<body>
+    <link href="css/micmain.css" rel="stylesheet" type="text/css" />
+
+    <div id="content">
+        <span id="icon-music">♬</span>
+
+        <div class="wrap">
+            <div id="result">
+                <span class="final" id="final_span"></span>
+                <span class="interim" id="interim_span"></span>
+            </div>
+            <button id="btn-mic" class="off">마이크 <span></span></button>
+            <button id="btn-tts">Text to speech</button>
+            <audio id="audio" src="audio/ending.mp3"></audio>
+        </div>
+    </div>
+
+    <script src="js/micmain.js"></script>
+
+    <script src="/js/lib/highlight.min.js"></script>
+    <script src="/js/base.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

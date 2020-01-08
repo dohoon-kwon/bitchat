@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>파일관리</title>
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="filestyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="sanaicon.ico" />
+
+</head>
+
+<body>
+    <form action="upload" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>파일 업로드</legend>
+            <div class="uploadform">
+                <ul class="logo">
+                    <li><label>파일업로드</label></li>
+                </ul>
+
+                <ul class="upload">
+                    <li><a><input type="file" name="userfile" /></a></li>
+                    <li><a><input type="submit" name="제출" /></a></li>
+                </ul>
+
+                <ul class="exit">
+                    <li><a><input onclick="movepage()" value="메인으로"/></a></li>
+                </ul>
+            </div>
+        </fieldset>
+
+    </form>
+    <script type="text/javascript">
+        function movepage() {
+            location.href = "/main"
+        }
+    </script>
+
+</body>
+</html>

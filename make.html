@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="makestyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="sanaicon.ico" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        function submitAction() {
+            if ($("#id").val() == '') {
+                alert("아이디가 비어있습니다.");
+                return false;
+            }
+            else if ($("#pw").val() == '') {
+                alert("비밀번호가 비어있습니다.");
+                return false;
+            }
+            else if ($("#pwre").val() == '') {
+                alert("비밀번호 확인이 비어있습니다.");
+                return false;
+            }
+            else if ($("#pw").val() != $("#pwre").val()) {
+                alert("두 개의 비밀번호가 다릅니다!");
+                return false;
+            }
+            else if ($("#birth").val() == '') {
+                alert("생일이 비어있습니다.");
+                return false;
+            }
+            else if ($("#phone").val() == '') {
+                alert("전화번호가 비어있습니다.");
+                return false;
+            }
+            else if ($("#name").val() == '') {
+                alert("이름이 비어있습니다.");
+                return false;
+            }
+            else if ($("#mail").val() == '') {
+                alert("메일이 비어있습니다.");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="logo">
+        <ul class="logotxt">
+            <li><label>회원가입</label></li>
+            <li><label>회원님을 환영합니다!</label></li>
+        </ul>
+    </div>
+
+    <form action="loginweb" method="post" onsubmit="return submitAction();">
+        <div class="inputlist">
+            <ul class="account">
+                <li><label for="id">아이디</label><input type="text" name="idtext" id="id" /></li>
+                <li><label for="pw">비밀번호</label><input type="password" name="pwtext" id="pw" /></li>
+                <li><label for="pwre">비밀번호 확인</label><input type="password" name="pwretext" id="pwre" /></li>
+                <li><label for="bd">생년월일</label><input type="text" name="bdtext" id="birth" /></li>
+                <li><label for="ph">전화번호</label><input type="text" name="phtext" id="phone" /></li>
+                <li><label for="na">이름</label><input type="text" name="ntext" id="name" /></li>
+                <li><label for="ma">이메일</label><input type="email" name="mtext" id="mail" /></li>
+            </ul>
+
+            <ul class="btn">
+                <li class="submitbtn">
+                    <a><input value="회원가입" type="submit" /></a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="btnline">
+
+        </div>
+    </form>
+    <script type="text/javascript">
+        function movepage() {
+            location.href = "/"
+        }
+    </script>
+</body>
+</html>

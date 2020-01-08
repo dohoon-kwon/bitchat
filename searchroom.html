@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>회의실입장</title>
+
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="searchroomstyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="sanaicon.ico" />
+</head>
+
+
+
+<body>
+    <form action="meeting" method="post">
+        <div class="inputlist">
+            <ul class="myidinfo">
+                <li><label>방이름</label><input type="text" name="name" id="name1" /></li>
+                <li><label>비밀번호</label><input type="password" name="password" id="password1" /></li>
+
+                <li class="submit"><a><input value="입장" type="submit" /></a></li>
+                <li class="submit"><a><input value="메인으로" type="button" onclick="movepage()"/></a></li>
+            </ul>
+
+            <ul class="btm">
+                <li>새로운 회의실을 만들으세요!<a value="page move" onClick="makepage()">회의실생성</a></li>
+            </ul>
+        </div>
+
+
+    </form>
+    <script type="text/javascript">
+        function makepage() {
+            location.href = "/makeroom"
+        }
+        function movepage() {
+            location.href = "/main";
+        }
+    </script>
+</body>
+</html>
